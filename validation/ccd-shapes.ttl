@@ -1,0 +1,9 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ccdoc: <https://comisioncorograficadigital.github.io/ccd-ontology/ontology/documento/> .
+
+ccdoc:DocumentoShape a sh:NodeShape ;
+  sh:targetClass ccdoc:Documento ;
+  sh:property [ sh:path dcterms:title ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path dcterms:identifier ; sh:minCount 1 ] ;
+  sh:property [ sh:path dcterms:type ; sh:minCount 1 ] .

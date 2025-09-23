@@ -1,0 +1,16 @@
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cctop: <https://comisioncorograficadigital.github.io/ccd-ontology/ontology/topico/> .
+
+cctop:Tipologia a skos:ConceptScheme ; skos:prefLabel "Tipologías CCD"@es .
+cctop:Tema a skos:ConceptScheme ; skos:prefLabel "Temas CCD"@es .
+cctop:Tecnica a skos:ConceptScheme ; skos:prefLabel "Técnicas artísticas / gráficas"@es .
+cctop:Material a skos:ConceptScheme ; skos:prefLabel "Materiales"@es .
+
+cctop:Libro a skos:Concept ; skos:prefLabel "Libro"@es ; skos:inScheme cctop:Tipologia .
+cctop:SeccionDeLibro a skos:Concept ; skos:prefLabel "Sección de libro"@es ; skos:inScheme cctop:Tipologia .
+cctop:MaterialDePrensa a skos:Concept ; skos:prefLabel "Material de prensa (periódicos)"@es ; skos:inScheme cctop:Tipologia .
+cctop:MaterialDeRevista a skos:Concept ; skos:prefLabel "Material de revista/boletín/anales"@es ; skos:inScheme cctop:Tipologia .
+cctop:Manuscrito a skos:Concept ; skos:prefLabel "Manuscrito"@es ; skos:inScheme cctop:Tipologia .
+cctop:Carta a skos:Concept ; skos:prefLabel "Carta"@es ; skos:inScheme cctop:Tipologia .
+cctop:Mapa a skos:Concept ; skos:prefLabel "Mapa"@es ; skos:inScheme cctop:Tipologia .
+cctop:Lamina a skos:Concept ; skos:prefLabel "Lámina / Material visual"@es ; skos:inScheme cctop:Tipologia .

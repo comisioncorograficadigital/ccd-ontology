@@ -1,0 +1,20 @@
+{
+  "@context": {
+    "id": "@id",
+    "type": "@type",
+    "ccd": "https://comisioncorograficadigital.github.io/ccd-ontology/ontology/",
+    "ccdoc": "https://comisioncorograficadigital.github.io/ccd-ontology/ontology/documento/",
+    "ccent": "https://comisioncorograficadigital.github.io/ccd-ontology/ontology/entidad/",
+    "ccloc": "https://comisioncorograficadigital.github.io/ccd-ontology/ontology/lugar/",
+    "ccevt": "https://comisioncorograficadigital.github.io/ccd-ontology/ontology/evento/",
+    "cctop": "https://comisioncorograficadigital.github.io/ccd-ontology/ontology/topico/",
+    "ccstat": "https://comisioncorograficadigital.github.io/ccd-ontology/ontology/estatus/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "schema": "https://schema.org/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "locn": "http://www.w3.org/ns/locn#",
+    "bibo": "http://purl.org/ontology/bibo/",
+    "dcmitype": "http://purl.org/dc/dcmitype/"
+  }
+}

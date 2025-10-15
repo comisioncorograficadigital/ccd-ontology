@@ -29,10 +29,18 @@
   </ul>
 
   <!-- NUEVO: publicación técnica con visor -->
-  <h2>Publicación de la ontología</h2>
-  <p class="muted">Vista embebida de WebVOWL (usa <code>ontology/ccd_webvowl.html</code>). Coloca <code>ccd_webvowl.json</code> en <code>ontology/</code> para carga automática.</p>
-  <p><a href="ontology/">Abrir página técnica en /ontology/</a></p>
-  <iframe src="ontology/ccd_webvowl.html"></iframe>
+<h2>Publicación de la ontología</h2>
+<p class="muted">Vista embebida de WebVOWL (carga <code>ontology/ccd_webvowl.html</code>, que a su vez lee <code>ccd_webvowl.json</code> en la misma carpeta).</p>
+<p><a href="ontology/ccd-ontology-v1.ttl">Abrir página técnica en /ontology/</a></p>
+
+<iframe
+  src="ontology/ccd_webvowl.html?v=1"
+  width="100%"
+  height="640"
+  frameborder="0"
+  loading="lazy">
+</iframe>
+
 
   <!-- OPCIONAL: sección de templates Omeka S -->
   <!-- Descomenta si vas a publicar los JSON

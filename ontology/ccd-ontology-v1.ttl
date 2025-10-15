@@ -20,26 +20,49 @@
 
 ccd: a owl:Ontology ;
   rdfs:label "CCD — Ontología de aplicación (v1.0)"@es ;
-  rdfs:comment "Perfil de aplicación unificado a partir de los Resource Templates (Omeka S)."@es ;
+  rdfs:comment "Perfil de aplicación unificado a partir de los Resource Templates (Omeka S). Superclase ccd:Document + tipologías. Entidades paralelas (Person, Organization, Place) y propiedades reusadas para vincularlas."@es ;
   dcterms:creator "Comisión Corográfica Digital (CCD)"@es ;
   dcterms:issued "2025-10-15"^^xsd:date .
 
-# Núcleo
+############################
+# Núcleo (rama documental)
+############################
+
 ccd:Document a owl:Class ;
   rdfs:label "Documento"@es ;
   rdfs:comment "Superclase para todos los recursos documentales CCD."@es .
 
-# Subclases
-bibo:Book               a owl:Class ; rdfs:label "Libro"@es ;                 rdfs:subClassOf ccd:Document .
-bibo:Chapter            a owl:Class ; rdfs:label "Sección de libro"@es ;      rdfs:subClassOf ccd:Document .
-ccd:JournalArticle      a owl:Class ; rdfs:label "Artículo de revista"@es ;   rdfs:subClassOf ccd:Document .
-ccd:NewspaperArticle    a owl:Class ; rdfs:label "Artículo de prensa"@es ;    rdfs:subClassOf ccd:Document .
-bibo:Manuscript         a owl:Class ; rdfs:label "Manuscrito"@es ;            rdfs:subClassOf ccd:Document .
-bibo:Letter             a owl:Class ; rdfs:label "Carta"@es ;                 rdfs:subClassOf ccd:Document .
-bibo:Map                a owl:Class ; rdfs:label "Mapa"@es ;                  rdfs:subClassOf ccd:Document .
-dcmitype:Image          a owl:Class ; rdfs:label "Imagen / Lámina"@es ;       rdfs:subClassOf ccd:Document .
+# Tipologías / subclases documentales
+bibo:Book               a owl:Class ; rdfs:label "Libro"@es ;               rdfs:subClassOf ccd:Document .
+bibo:Chapter            a owl:Class ; rdfs:label "Sección de libro"@es ;    rdfs:subClassOf ccd:Document .
+ccd:JournalArticle      a owl:Class ; rdfs:label "Artículo de revista"@es ; rdfs:subClassOf ccd:Document .
+ccd:NewspaperArticle    a owl:Class ; rdfs:label "Artículo de prensa"@es ;  rdfs:subClassOf ccd:Document .
+bibo:Manuscript         a owl:Class ; rdfs:label "Manuscrito"@es ;          rdfs:subClassOf ccd:Document .
+bibo:Letter             a owl:Class ; rdfs:label "Carta"@es ;               rdfs:subClassOf ccd:Document .
+bibo:Map                a owl:Class ; rdfs:label "Mapa"@es ;                rdfs:subClassOf ccd:Document .
+dcmitype:Image          a owl:Class ; rdfs:label "Imagen / Lámina"@es ;     rdfs:subClassOf ccd:Document .
 
-# Propiedades principales
+############################################
+# Entidades paralelas (NO subclases de Document)
+############################################
+
+schema:Person a owl:Class ;
+  rdfs:label "Persona"@es ;
+  rdfs:comment "Agente humano; rama paralela a Documento. No es subclase de ccd:Document."@es .
+
+schema:Organization a owl:Class ;
+  rdfs:label "Institución"@es ;
+  rdfs:comment "Agente organizacional; rama paralela a Documento."@es .
+
+schema:Place a owl:Class ;
+  rdfs:label "Lugar"@es ;
+  rdfs:comment "Entidad geográfica/lugar; rama paralela a Documento."@es .
+
+############################################
+# Propiedades principales (reusadas)
+############################################
+
+# Descriptivas comunes
 dcterms:title a rdf:Property .
 dcterms:identifier a rdf:Property .
 bibo:shortTitle a rdf:Property .
@@ -52,11 +75,9 @@ dcterms:issued a rdf:Property .
 dcterms:date a rdf:Property .
 dcterms:temporal a rdf:Property .
 dcterms:spatial a rdf:Property .
-schema:mentions a rdf:Property .
-locn:location a rdf:Property .
-wgs84:lat a rdf:Property .
-wgs84:long a rdf:Property .
 schema:url a rdf:Property .
+
+# Relacionales / estructura y versiones
 dcterms:isPartOf a rdf:Property .
 dcterms:hasPart a rdf:Property .
 dcterms:isVersionOf a rdf:Property .
@@ -68,14 +89,68 @@ dcterms:references a rdf:Property .
 dcterms:source a rdf:Property .
 dcterms:relation a rdf:Property .
 
-# Restricciones ilustrativas (para lectura y VOWL)
-bibo:Chapter rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dcterms:isPartOf ; owl:someValuesFrom bibo:Book ] .
-ccd:JournalArticle rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dcterms:issued ; owl:someValuesFrom rdfs:Literal ] .
-ccd:NewspaperArticle rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dcterms:issued ; owl:someValuesFrom rdfs:Literal ] .
-bibo:Map rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dcterms:spatial ; owl:someValuesFrom schema:Place ] .
+# Agentes (reusadas de schema.org)
+schema:creator a rdf:Property .
+schema:contributor a rdf:Property .
+schema:publisher a rdf:Property .
+schema:sender a rdf:Property .
+schema:recipient a rdf:Property .
 
-# Entidades
-schema:Person a owl:Class ; rdfs:label "Persona"@es .
-schema:Organization a owl:Class ; rdfs:label "Institución"@es .
-schema:Place a owl:Class ; rdfs:label "Lugar"@es .
+# Localización/geométrica (reusadas)
+locn:location a rdf:Property .
+wgs84:lat a rdf:Property .
+wgs84:long a rdf:Property .
+
+#############################################################
+# Axiomas de perfil (dominio/rango orientativos de aplicación)
+# — NO crean propiedades nuevas; solo acotan su uso en CCD —
+#############################################################
+
+# Documentos ↔ Agentes (personas/organizaciones)
+schema:creator   rdfs:domain ccd:Document ; rdfs:range [ a owl:Class ; owl:unionOf ( schema:Person schema:Organization ) ] .
+schema:contributor rdfs:domain ccd:Document ; rdfs:range [ a owl:Class ; owl:unionOf ( schema:Person schema:Organization ) ] .
+schema:publisher rdfs:domain ccd:Document ; rdfs:range schema:Organization .
+schema:sender    rdfs:domain bibo:Letter  ; rdfs:range schema:Person .
+schema:recipient rdfs:domain bibo:Letter  ; rdfs:range schema:Person .
+
+# Documentos ↔ Lugares (tema/escena/ubicación)
+dcterms:spatial  rdfs:domain ccd:Document ; rdfs:range schema:Place .
+locn:location    rdfs:domain ccd:Document .
+wgs84:lat        rdfs:domain schema:Place ; rdfs:range xsd:string .
+wgs84:long       rdfs:domain schema:Place ; rdfs:range xsd:string .
+
+# Tipología y temas (con SKOS externo, sin imponer listas aquí)
+dcterms:type     rdfs:domain ccd:Document ; rdfs:range skos:Concept .
+dcterms:subject  rdfs:domain ccd:Document ; rdfs:range skos:Concept .
+dcterms:temporal rdfs:domain ccd:Document ; rdfs:range skos:Concept .
+
+#########################################################
+# Restricciones ilustrativas (ayudan a la lectura/VOWL)
+#########################################################
+
+# Capítulo dentro de Libro
+bibo:Chapter rdfs:subClassOf [
+  a owl:Restriction ;
+  owl:onProperty dcterms:isPartOf ;
+  owl:someValuesFrom bibo:Book
+] .
+
+# Artículos con fecha de publicación
+ccd:JournalArticle rdfs:subClassOf [
+  a owl:Restriction ;
+  owl:onProperty dcterms:issued ;
+  owl:someValuesFrom rdfs:Literal
+] .
+ccd:NewspaperArticle rdfs:subClassOf [
+  a owl:Restriction ;
+  owl:onProperty dcterms:issued ;
+  owl:someValuesFrom rdfs:Literal
+] .
+
+# Mapas con al menos un lugar
+bibo:Map rdfs:subClassOf [
+  a owl:Restriction ;
+  owl:onProperty dcterms:spatial ;
+  owl:someValuesFrom schema:Place
+] .
 

@@ -1,58 +1,81 @@
-@prefix : <https://comisioncorograficadigital.github.io/ccd-ontology/ontology/> .
-@prefix ccdoc: <https://comisioncorograficadigital.github.io/ccd-ontology/ontology/documento/> .
-@prefix ccent: <https://comisioncorograficadigital.github.io/ccd-ontology/ontology/entidad/> .
-@prefix ccloc: <https://comisioncorograficadigital.github.io/ccd-ontology/ontology/lugar/> .
-@prefix ccevt: <https://comisioncorograficadigital.github.io/ccd-ontology/ontology/evento/> .
-@prefix cctop: <https://comisioncorograficadigital.github.io/ccd-ontology/ontology/topico/> .
-@prefix ccstat: <https://comisioncorograficadigital.github.io/ccd-ontology/ontology/estatus/> .
-@prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix prov: <http://www.w3.org/ns/prov#> .
-@prefix locn: <http://www.w3.org/ns/locn#> .
-@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix owl:      <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix dcterms:  <http://purl.org/dc/terms/> .
 @prefix dcmitype: <http://purl.org/dc/dcmitype/> .
+@prefix bibo:     <http://purl.org/ontology/bibo/> .
+@prefix schema:   <https://schema.org/> .
+@prefix skos:     <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:     <http://www.w3.org/ns/prov#> .
+@prefix locn:     <http://www.w3.org/ns/locn#> .
+@prefix wgs84:    <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 
-<https://comisioncorograficadigital.github.io/ccd-ontology/ontology/> a owl:Ontology ;
-  dcterms:title "Ontología CCD v1.0"@es ;
+@prefix ccd: <https://comisioncorograficadigital.github.io/ccd-ontology/ccd.owl#> .
+
+#################################################################
+# CCD — Ontología / Perfil de Aplicación v1.0
+#################################################################
+
+ccd: a owl:Ontology ;
+  rdfs:label "CCD — Ontología de aplicación (v1.0)"@es ;
+  rdfs:comment "Perfil de aplicación unificado a partir de los Resource Templates (Omeka S)."@es ;
   dcterms:creator "Comisión Corográfica Digital (CCD)"@es ;
-  dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
-  owl:versionInfo "v1.0 (2025-09-23)" ;
-  dcterms:issued "2025-09-23"^^<http://www.w3.org/2001/XMLSchema#date> ;
-  rdfs:comment "Ontología mínima de dominio para CCD (Omeka S). Soporta tipologías documentales, agentes, lugares, eventos, estatus A/B/C, PROV-O y SKOS."@es .
+  dcterms:issued "2025-10-15"^^xsd:date .
 
-# Clases documentales
-ccdoc:Documento a owl:Class ; rdfs:label "Documento"@es .
-ccdoc:Libro a owl:Class ; rdfs:subClassOf ccdoc:Documento ; rdfs:label "Libro"@es .
-ccdoc:SeccionDeLibro a owl:Class ; rdfs:subClassOf ccdoc:Documento ; rdfs:label "Sección de libro"@es .
-ccdoc:MaterialDePrensa a owl:Class ; rdfs:subClassOf ccdoc:Documento ; rdfs:label "Material de prensa"@es .
-ccdoc:MaterialDeRevista a owl:Class ; rdfs:subClassOf ccdoc:Documento ; rdfs:label "Material de revista/boletín/anales"@es .
-ccdoc:Manuscrito a owl:Class ; rdfs:subClassOf ccdoc:Documento ; rdfs:label "Manuscrito"@es .
-ccdoc:Carta a owl:Class ; rdfs:subClassOf ccdoc:Documento ; rdfs:label "Carta"@es .
-ccdoc:Mapa a owl:Class ; rdfs:subClassOf ccdoc:Documento ; rdfs:label "Mapa"@es ; owl:equivalentClass bibo:Map .
-ccdoc:Lamina a owl:Class ; rdfs:subClassOf ccdoc:Documento ; rdfs:label "Lámina / Material visual"@es ; owl:equivalentClass dcmitype:Image .
-ccdoc:EntidadPlanificada a owl:Class ; rdfs:subClassOf ccdoc:Documento ; rdfs:label "Entidad planificada/no localizada"@es .
+# Núcleo
+ccd:Document a owl:Class ;
+  rdfs:label "Documento"@es ;
+  rdfs:comment "Superclase para todos los recursos documentales CCD."@es .
 
-# Agentes, lugares, eventos
-ccent:Persona a owl:Class ; rdfs:label "Persona"@es .
-ccent:Institucion a owl:Class ; rdfs:label "Institución"@es .
-ccloc:Lugar a owl:Class ; rdfs:label "Lugar"@es ; rdfs:comment "Entidad geográfica; usar LOCN/Schema/WGS84 para coordenadas."@es .
-ccevt:Evento a owl:Class ; rdfs:label "Evento"@es ; rdfs:comment "Expedición, campaña editorial, publicación u otros eventos."@es .
+# Subclases
+bibo:Book               a owl:Class ; rdfs:label "Libro"@es ;                 rdfs:subClassOf ccd:Document .
+bibo:Chapter            a owl:Class ; rdfs:label "Sección de libro"@es ;      rdfs:subClassOf ccd:Document .
+ccd:JournalArticle      a owl:Class ; rdfs:label "Artículo de revista"@es ;   rdfs:subClassOf ccd:Document .
+ccd:NewspaperArticle    a owl:Class ; rdfs:label "Artículo de prensa"@es ;    rdfs:subClassOf ccd:Document .
+bibo:Manuscript         a owl:Class ; rdfs:label "Manuscrito"@es ;            rdfs:subClassOf ccd:Document .
+bibo:Letter             a owl:Class ; rdfs:label "Carta"@es ;                 rdfs:subClassOf ccd:Document .
+bibo:Map                a owl:Class ; rdfs:label "Mapa"@es ;                  rdfs:subClassOf ccd:Document .
+dcmitype:Image          a owl:Class ; rdfs:label "Imagen / Lámina"@es ;       rdfs:subClassOf ccd:Document .
 
-# Estatus A/B/C
-ccstat:Estatus a owl:Class ; rdfs:label "Estatus de evidencia"@es .
-ccstat:Debil a ccstat:Estatus ; rdfs:label "Débil (agrupamiento por consulta)"@es .
-ccstat:Media a ccstat:Estatus ; rdfs:label "Media (Dossier/ConsultaCuratorial)"@es .
-ccstat:Fuerte a ccstat:Estatus ; rdfs:label "Fuerte (evidencia robusta)"@es .
-ccstat:PlanificadaNoLocalizada a ccstat:Estatus ; rdfs:label "Planificada / No localizada"@es .
+# Propiedades principales
+dcterms:title a rdf:Property .
+dcterms:identifier a rdf:Property .
+bibo:shortTitle a rdf:Property .
+dcterms:description a rdf:Property .
+dcterms:language a rdf:Property .
+dcterms:subject a rdf:Property .
+dcterms:type a rdf:Property .
+dcterms:created a rdf:Property .
+dcterms:issued a rdf:Property .
+dcterms:date a rdf:Property .
+dcterms:temporal a rdf:Property .
+dcterms:spatial a rdf:Property .
+schema:mentions a rdf:Property .
+locn:location a rdf:Property .
+wgs84:lat a rdf:Property .
+wgs84:long a rdf:Property .
+schema:url a rdf:Property .
+dcterms:isPartOf a rdf:Property .
+dcterms:hasPart a rdf:Property .
+dcterms:isVersionOf a rdf:Property .
+dcterms:hasVersion a rdf:Property .
+prov:wasDerivedFrom a rdf:Property .
+prov:wasRevisionOf a rdf:Property .
+prov:used a rdf:Property .
+dcterms:references a rdf:Property .
+dcterms:source a rdf:Property .
+dcterms:relation a rdf:Property .
 
-# Propiedad local
-ccdoc:hasEstatus a owl:ObjectProperty ;
-  rdfs:label "tiene estatus"@es ;
-  rdfs:comment "Asigna un estatus A/B/C al documento."@es ;
-  rdfs:domain ccdoc:Documento ; rdfs:range ccstat:Estatus .
+# Restricciones ilustrativas (para lectura y VOWL)
+bibo:Chapter rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dcterms:isPartOf ; owl:someValuesFrom bibo:Book ] .
+ccd:JournalArticle rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dcterms:issued ; owl:someValuesFrom rdfs:Literal ] .
+ccd:NewspaperArticle rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dcterms:issued ; owl:someValuesFrom rdfs:Literal ] .
+bibo:Map rdfs:subClassOf [ a owl:Restriction ; owl:onProperty dcterms:spatial ; owl:someValuesFrom schema:Place ] .
 
-# Puentes
-ccdoc:Mapa rdfs:seeAlso bibo:Map .
-ccdoc:Lamina rdfs:seeAlso dcmitype:Image .
+# Entidades
+schema:Person a owl:Class ; rdfs:label "Persona"@es .
+schema:Organization a owl:Class ; rdfs:label "Institución"@es .
+schema:Place a owl:Class ; rdfs:label "Lugar"@es .
+

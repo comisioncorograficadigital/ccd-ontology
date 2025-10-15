@@ -1,34 +1,65 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ontología CCD v1.0 — Documentación</title>
+  <meta charset="utf-8">
+  <title>Ontología CCD — Perfil de Aplicación (v1.0)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body{font-family:system-ui,Segoe UI,Roboto,Arial;line-height:1.55;margin:2rem;max-width:900px}
-    code,pre{background:#f6f8fa;padding:.2em .4em;border-radius:4px}
-    a{color:#0366d6;text-decoration:none} a:hover{text-decoration:underline}
-    ul{padding-left:1.2rem}
+    :root { --bg:#fff; --text:#111; --muted:#666; --accent:#0a66c2; }
+    html, body { margin:0; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; color:var(--text); background:var(--bg); }
+    header { padding:28px 20px; border-bottom:1px solid #eee; }
+    header h1 { margin:0 0 6px; font-size: 24px; }
+    header p { margin:0; color:var(--muted); }
+    main { max-width: 980px; margin: 24px auto; padding: 0 20px; }
+    section { margin: 28px 0; }
+    .cards { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:12px; }
+    .card { border:1px solid #eee; border-radius:12px; padding:14px; background:#fff; }
+    .card a { text-decoration:none; color:var(--accent); word-break: break-word; }
+    code { background:#f6f8fa; padding:2px 6px; border-radius:6px; }
+    iframe { border: 1px solid #eee; border-radius: 12px; width:100%; height:640px; }
+    footer { margin: 48px 0 24px; text-align:center; color:#888; font-size:14px; }
+    .small { color:#777; font-size:13px; }
   </style>
 </head>
 <body>
-  <h1>Ontología CCD v1.0</h1>
-  <p>Licencia: CC-BY 4.0</p>
+  <header>
+    <h1>Ontología CCD — Perfil de Aplicación (v1.0)</h1>
+    <p>Comisión Corográfica Digital · 2025-10-15</p>
+  </header>
+  <main>
+    <section>
+      <h2>📚 Descargas</h2>
+      <div class="cards">
+        <div class="card"><strong>Ontología (TTL)</strong><br><a href="./ccd.ttl">./ccd.ttl</a></div>
+        <div class="card"><strong>SKOS starter (TTL)</strong><br><a href="./ccd-skos.ttl">./ccd-skos.ttl</a></div>
+        <div class="card"><strong>SHACL (TTL)</strong><br><a href="./ccd-shacl.ttl">./ccd-shacl.ttl</a></div>
+        <div class="card"><strong>Contexto JSON-LD</strong><br><a href="./context.jsonld">./context.jsonld</a></div>
+      </div>
+      <p class="small">Coloca estos archivos en la misma carpeta que este <code>index.html</code>.</p>
+    </section>
 
-  <h2>URIs canónicas</h2>
-  <p>Base: <code>https://comisioncorograficadigital.github.io/ccd-ontology/ontology/</code></p>
+    <section>
+      <h2>🕸️ Visualización de la ontología (WebVOWL)</h2>
+      <p>Opción A: exporta tu JSON desde WebVOWL como <code>ccd_webvowl.json</code> y colócalo junto a esta página.</p>
+      <p>Opción B: usa el visor embebido y carga manualmente el JSON.</p>
+      <iframe src="./ccd_webvowl.html"></iframe>
+    </section>
 
-  <h2>Archivos</h2>
-  <ul>
-    <li><a href="ontology/ccd-ontology-v1.ttl" rel="noopener">Ontología (TTL)</a></li>
-    <li><a href="vocabularies/cctop-skos-starter.ttl" rel="noopener">SKOS starter (TTL)</a></li>
-    <li><a href="validation/ccd-shapes.ttl" rel="noopener">SHACL (TTL)</a></li>
-    <li><a href="export/ccd-context.jsonld" rel="noopener">Contexto JSON-LD</a></li>
-  </ul>
-
-  <h2>Notas</h2>
-  <ul>
-    <li>Si el navegador muestra <em>text/plain</em> para <code>.ttl</code>, es normal en GitHub Pages.</li>
-  </ul>
+    <section>
+      <h2>🧱 Resource Templates (Omeka S)</h2>
+      <div class="cards">
+        <div class="card"><a href="./templates/Articulo_de_revista.json">Articulo_de_revista.json</a></div>
+        <div class="card"><a href="./templates/Correspondencia.json">Correspondencia.json</a></div>
+        <div class="card"><a href="./templates/Imagen.json">Imagen.json</a></div>
+        <div class="card"><a href="./templates/Libro.json">Libro.json</a></div>
+        <div class="card"><a href="./templates/Manuscrito.json">Manuscrito.json</a></div>
+        <div class="card"><a href="./templates/Mapas.json">Mapas.json</a></div>
+        <div class="card"><a href="./templates/Material_de_prensa.json">Material_de_prensa.json</a></div>
+        <div class="card"><a href="./templates/Seccion_de_libro.json">Seccion_de_libro.json</a></div>
+      </div>
+      <p class="small">Crea la carpeta <code>templates/</code> y coloca dentro los 8 JSON.</p>
+    </section>
+  </main>
+  <footer>Publicado mediante GitHub Pages · <a href="https://github.com/comisioncorograficadigital/ccd-ontology">Repositorio</a></footer>
 </body>
 </html>

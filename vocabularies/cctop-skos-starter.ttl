@@ -1,16 +1,111 @@
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct:   <http://purl.org/dc/terms/> .
+
 @prefix cctop: <https://comisioncorograficadigital.github.io/ccd-ontology/ontology/topico/> .
 
-cctop:Tipologia a skos:ConceptScheme ; skos:prefLabel "Tipologías CCD"@es .
-cctop:Tema a skos:ConceptScheme ; skos:prefLabel "Temas CCD"@es .
-cctop:Tecnica a skos:ConceptScheme ; skos:prefLabel "Técnicas artísticas / gráficas"@es .
-cctop:Material a skos:ConceptScheme ; skos:prefLabel "Materiales"@es .
+#################################################################
+# CCD — SKOS STARTER (indicativo, sin listas cerradas todavía)
+#
+# Uso en los datos (todas propiedades reusadas, ¡no se crean nuevas!):
+#   - dcterms:type      -> conceptos de cctop:Tipologia
+#   - dcterms:subject   -> conceptos de cctop:Tema
+#   - schema:artform    -> conceptos de cctop:Tecnica
+#   - schema:material   -> conceptos de cctop:Material
+#   - dcterms:temporal  -> conceptos de cctop:CoberturaTemporal
+#
+# NOTA IMPORTANTE:
+#   Este archivo NO introduce propiedades ni clases nuevas.
+#   Solo define contenedores SKOS (ConceptScheme) y, por ahora,
+#   una lista mínima de "Tipología" ya consensuada.
+#
+# Sugerencia para SHACL (opcional, no normativa):
+#   - Para cada propiedad anterior, validar que el valor sea IRI y skos:Concept:
+#       sh:nodeKind sh:IRI ;
+#       sh:class skos:Concept .
+#################################################################
 
-cctop:Libro a skos:Concept ; skos:prefLabel "Libro"@es ; skos:inScheme cctop:Tipologia .
-cctop:SeccionDeLibro a skos:Concept ; skos:prefLabel "Sección de libro"@es ; skos:inScheme cctop:Tipologia .
-cctop:MaterialDePrensa a skos:Concept ; skos:prefLabel "Material de prensa (periódicos)"@es ; skos:inScheme cctop:Tipologia .
-cctop:MaterialDeRevista a skos:Concept ; skos:prefLabel "Material de revista/boletín/anales"@es ; skos:inScheme cctop:Tipologia .
-cctop:Manuscrito a skos:Concept ; skos:prefLabel "Manuscrito"@es ; skos:inScheme cctop:Tipologia .
-cctop:Carta a skos:Concept ; skos:prefLabel "Carta"@es ; skos:inScheme cctop:Tipologia .
-cctop:Mapa a skos:Concept ; skos:prefLabel "Mapa"@es ; skos:inScheme cctop:Tipologia .
-cctop:Lamina a skos:Concept ; skos:prefLabel "Lámina / Material visual"@es ; skos:inScheme cctop:Tipologia .
+### Esquemas (indicativos; vacíos salvo Tipología)
+
+cctop:Tipologia a skos:ConceptScheme ;
+  skos:prefLabel "Tipologías CCD"@es ;
+  dct:description "Esquema para anotar dcterms:type. Lista base de tipologías documentales acordadas."@es ;
+  # (Opcional) Anotación no normativa:
+  rdfs:isDefinedBy <https://comisioncorograficadigital.github.io/ccd-ontology/ontology/> .
+
+cctop:Tema a skos:ConceptScheme ;
+  skos:prefLabel "Temas CCD"@es ;
+  dct:description "Esquema para anotar dcterms:subject. Los conceptos serán definidos por el comité científico."@es ;
+  rdfs:isDefinedBy <https://comisioncorograficadigital.github.io/ccd-ontology/ontology/> .
+
+cctop:Tecnica a skos:ConceptScheme ;
+  skos:prefLabel "Técnicas artísticas / gráficas"@es ;
+  dct:description "Esquema para anotar schema:artform. Pendiente definición controlada."@es ;
+  rdfs:isDefinedBy <https://comisioncorograficadigital.github.io/ccd-ontology/ontology/> .
+
+cctop:Material a skos:ConceptScheme ;
+  skos:prefLabel "Materiales"@es ;
+  dct:description "Esquema para anotar schema:material. Pendiente definición controlada."@es ;
+  rdfs:isDefinedBy <https://comisioncorograficadigital.github.io/ccd-ontology/ontology/> .
+
+cctop:CoberturaTemporal a skos:ConceptScheme ;
+  skos:prefLabel "Cobertura temporal (periodización CCD)"@es ;
+  dct:description "Esquema para anotar dcterms:temporal. PENDIENTE — será definido por el comité científico."@es ;
+  rdfs:isDefinedBy <https://comisioncorograficadigital.github.io/ccd-ontology/ontology/> .
+
+#################################################################
+# Tipología (únicamente como guía establecida; sin mappings externos)
+#################################################################
+
+cctop:Libro a skos:Concept ;
+  skos:prefLabel "Libro"@es ;
+  skos:inScheme cctop:Tipologia ;
+  skos:topConceptOf cctop:Tipologia .
+
+cctop:SeccionDeLibro a skos:Concept ;
+  skos:prefLabel "Sección de libro"@es ;
+  skos:inScheme cctop:Tipologia ;
+  skos:topConceptOf cctop:Tipologia .
+
+cctop:MaterialDePrensa a skos:Concept ;
+  skos:prefLabel "Material de prensa (periódicos)"@es ;
+  skos:inScheme cctop:Tipologia ;
+  skos:topConceptOf cctop:Tipologia .
+
+cctop:MaterialDeRevista a skos:Concept ;
+  skos:prefLabel "Material de revista/boletín/anales"@es ;
+  skos:inScheme cctop:Tipologia ;
+  skos:topConceptOf cctop:Tipologia .
+
+cctop:Manuscrito a skos:Concept ;
+  skos:prefLabel "Manuscrito"@es ;
+  skos:inScheme cctop:Tipologia ;
+  skos:topConceptOf cctop:Tipologia .
+
+cctop:Carta a skos:Concept ;
+  skos:prefLabel "Carta"@es ;
+  skos:inScheme cctop:Tipologia ;
+  skos:topConceptOf cctop:Tipologia .
+
+cctop:Mapa a skos:Concept ;
+  skos:prefLabel "Mapa"@es ;
+  skos:inScheme cctop:Tipologia ;
+  skos:topConceptOf cctop:Tipologia .
+
+cctop:Lamina a skos:Concept ;
+  skos:prefLabel "Lámina / Material visual"@es ;
+  skos:inScheme cctop:Tipologia ;
+  skos:topConceptOf cctop:Tipologia .
+
+#################################################################
+# Placeholders explícitos (NO son términos; solo orientación)
+#################################################################
+
+# Para cctop:Tema, cctop:Tecnica, cctop:Material y cctop:CoberturaTemporal
+# NO se listan conceptos en esta versión.
+# Recomendaciones al comité antes de poblar:
+#   - Alcance y granularidad (niveles broader/narrower)
+#   - Posible uso de skos:notation
+#   - Notas y definiciones (skos:note, skos:scopeNote)
+#   - Fuentes / bibliografía (dct:source)

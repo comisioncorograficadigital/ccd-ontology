@@ -1,0 +1,1402 @@
+{
+  "_comment": "Created with OWL2VOWL (version 0.3.7), http://vowl.visualdataweb.org [Additional Information added by WebVOWL Exporter Version: 1.1.7]",
+  "header": {
+    "languages": [
+      "es"
+    ],
+    "baseIris": [
+      "https://comisioncorograficadigital.github.io/ccd-ontology/ccd.owl",
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns",
+      "http://www.w3.org/ns/locn",
+      "http://www.w3.org/2000/01/rdf-schema",
+      "https://schema.org",
+      "http://www.w3.org/2003/01/geo/wgs84_pos",
+      "http://purl.org/dc/terms",
+      "http://www.w3.org/2001/XMLSchema",
+      "http://purl.org/dc/dcmitype",
+      "http://purl.org/ontology/bibo",
+      "http://www.w3.org/2004/02/skos/core"
+    ],
+    "prefixList": {
+      "owl": "http://www.w3.org/2002/07/owl#",
+      "dcterms": "http://purl.org/dc/terms/",
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "locn": "http://www.w3.org/ns/locn#",
+      "wgs84": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+      "prov": "http://www.w3.org/ns/prov#",
+      "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+      "bibo": "http://purl.org/ontology/bibo/",
+      "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+      "ccd": "https://comisioncorograficadigital.github.io/ccd-ontology/ccd.owl#",
+      "skos": "http://www.w3.org/2004/02/skos/core#",
+      "dcmitype": "http://purl.org/dc/dcmitype/",
+      "xml": "http://www.w3.org/XML/1998/namespace",
+      "cctop": "https://comisioncorograficadigital.github.io/ccd-ontology/ontology/topico/",
+      "schema": "https://schema.org/"
+    },
+    "iri": "https://comisioncorograficadigital.github.io/ccd-ontology/ccd.owl#",
+    "author": [
+      "Comisión Corográfica Digital (CCD)"
+    ],
+    "labels": {
+      "es": "CCD — Ontología de aplicación (v1.1)"
+    },
+    "comments": {
+      "es": "Perfil de aplicación unificado desde los Resource Templates (Omeka S). Superclase ccd:Document + tipologías; ramas paralelas (Person/Organization/Place); propiedades reusadas; restricciones ilustrativas para mejor visualización."
+    },
+    "other": {
+      "creator": [
+        {
+          "identifier": "creator",
+          "language": "es",
+          "value": "Comisión Corográfica Digital (CCD)",
+          "type": "label"
+        }
+      ]
+    }
+  },
+  "namespace": [],
+  "settings": {
+    "global": {
+      "zoom": "0.45",
+      "translation": [
+        397.16,
+        343.79
+      ],
+      "paused": false
+    },
+    "gravity": {
+      "classDistance": 200,
+      "datatypeDistance": 120
+    },
+    "filter": {
+      "checkBox": [
+        {
+          "id": "datatypeFilterCheckbox",
+          "checked": false
+        },
+        {
+          "id": "objectPropertyFilterCheckbox",
+          "checked": false
+        },
+        {
+          "id": "subclassFilterCheckbox",
+          "checked": false
+        },
+        {
+          "id": "disjointFilterCheckbox",
+          "checked": true
+        },
+        {
+          "id": "setoperatorFilterCheckbox",
+          "checked": false
+        }
+      ],
+      "degreeSliderValue": "0"
+    },
+    "modes": {
+      "checkBox": [
+        {
+          "id": "pickandpinModuleCheckbox",
+          "checked": false
+        },
+        {
+          "id": "nodescalingModuleCheckbox",
+          "checked": true
+        },
+        {
+          "id": "compactnotationModuleCheckbox",
+          "checked": false
+        },
+        {
+          "id": "colorexternalsModuleCheckbox",
+          "checked": true
+        }
+      ],
+      "colorSwitchState": false
+    }
+  },
+  "class": [
+    {
+      "id": "5",
+      "type": "owl:Class"
+    },
+    {
+      "id": "8",
+      "type": "owl:Class"
+    },
+    {
+      "id": "1",
+      "type": "owl:Class"
+    },
+    {
+      "id": "10",
+      "type": "owl:Class"
+    },
+    {
+      "id": "15",
+      "type": "owl:Class"
+    },
+    {
+      "id": "12",
+      "type": "owl:unionOf"
+    },
+    {
+      "id": "4",
+      "type": "owl:unionOf"
+    },
+    {
+      "id": "27",
+      "type": "rdfs:Datatype"
+    },
+    {
+      "id": "28",
+      "type": "rdfs:Datatype"
+    },
+    {
+      "id": "25",
+      "type": "owl:Class"
+    },
+    {
+      "id": "2",
+      "type": "owl:Class"
+    },
+    {
+      "id": "32",
+      "type": "rdfs:Literal"
+    },
+    {
+      "id": "35",
+      "type": "rdfs:Literal"
+    },
+    {
+      "id": "39",
+      "type": "rdfs:Literal"
+    },
+    {
+      "id": "40",
+      "type": "rdfs:Literal"
+    },
+    {
+      "id": "31",
+      "type": "owl:Class"
+    },
+    {
+      "id": "24",
+      "type": "owl:Class"
+    },
+    {
+      "id": "43",
+      "type": "rdfs:Literal"
+    },
+    {
+      "id": "47",
+      "type": "rdfs:Literal"
+    },
+    {
+      "id": "26",
+      "type": "owl:Class"
+    },
+    {
+      "id": "50",
+      "type": "rdfs:Literal"
+    },
+    {
+      "id": "46",
+      "type": "owl:Class"
+    },
+    {
+      "id": "20",
+      "type": "owl:Class"
+    },
+    {
+      "id": "17",
+      "type": "owl:Class"
+    },
+    {
+      "id": "54",
+      "type": "rdfs:Literal"
+    },
+    {
+      "id": "7",
+      "type": "owl:Class"
+    },
+    {
+      "id": "14",
+      "type": "owl:Class"
+    },
+    {
+      "id": "34",
+      "type": "owl:Class"
+    }
+  ],
+  "classAttribute": [
+    {
+      "id": "5",
+      "iri": "http://www.w3.org/2004/02/skos/core#Concept",
+      "baseIri": "http://www.w3.org/2004/02/skos/core",
+      "label": {
+        "IRI-based": "Concept"
+      },
+      "attributes": [
+        "external"
+      ],
+      "pos": [
+        904.6,
+        210.19
+      ]
+    },
+    {
+      "id": "8",
+      "iri": "http://purl.org/ontology/bibo/Journal",
+      "baseIri": "http://purl.org/ontology/bibo",
+      "label": {
+        "IRI-based": "Journal"
+      },
+      "attributes": [
+        "external"
+      ],
+      "pos": [
+        1469.71,
+        -348.92
+      ]
+    },
+    {
+      "id": "1",
+      "iri": "http://purl.org/ontology/bibo/Chapter",
+      "baseIri": "http://purl.org/ontology/bibo",
+      "label": {
+        "IRI-based": "Chapter",
+        "es": "Sección de libro"
+      },
+      "attributes": [
+        "external"
+      ],
+      "pos": [
+        400.2,
+        391.78
+      ]
+    },
+    {
+      "id": "10",
+      "iri": "http://purl.org/dc/dcmitype/Image",
+      "baseIri": "http://purl.org/dc/dcmitype",
+      "label": {
+        "IRI-based": "Image",
+        "es": "Imagen / Lámina"
+      },
+      "attributes": [
+        "external"
+      ],
+      "pos": [
+        276.37,
+        335.23
+      ]
+    },
+    {
+      "id": "15",
+      "iri": "http://purl.org/ontology/bibo/Book",
+      "baseIri": "http://purl.org/ontology/bibo",
+      "label": {
+        "IRI-based": "Book",
+        "es": "Libro"
+      },
+      "attributes": [
+        "external"
+      ],
+      "pos": [
+        328.45,
+        719.34
+      ]
+    },
+    {
+      "id": "12",
+      "attributes": [
+        "anonymous",
+        "union"
+      ],
+      "pos": [
+        1328.85,
+        749.67
+      ]
+    },
+    {
+      "id": "4",
+      "attributes": [
+        "anonymous",
+        "union"
+      ],
+      "pos": [
+        986.39,
+        1023.89
+      ]
+    },
+    {
+      "id": "27",
+      "iri": "http://www.w3.org/2001/XMLSchema#string",
+      "baseIri": "http://www.w3.org/2001/XMLSchema",
+      "label": {
+        "IRI-based": "string"
+      },
+      "attributes": [
+        "datatype"
+      ],
+      "pos": [
+        1452.17,
+        523.62
+      ]
+    },
+    {
+      "id": "28",
+      "iri": "http://www.w3.org/2001/XMLSchema#string",
+      "baseIri": "http://www.w3.org/2001/XMLSchema",
+      "label": {
+        "IRI-based": "string"
+      },
+      "attributes": [
+        "datatype"
+      ],
+      "pos": [
+        1376.51,
+        377.21
+      ]
+    },
+    {
+      "id": "25",
+      "iri": "https://schema.org/Organization",
+      "baseIri": "https://schema.org",
+      "label": {
+        "IRI-based": "Organization",
+        "es": "Institución"
+      },
+      "attributes": [
+        "external"
+      ],
+      "comment": {
+        "es": "Agente organizacional; rama paralela a Documento."
+      },
+      "pos": [
+        1076.46,
+        733.56
+      ]
+    },
+    {
+      "id": "2",
+      "iri": "https://comisioncorograficadigital.github.io/ccd-ontology/ccd.owl#Document",
+      "baseIri": "https://comisioncorograficadigital.github.io/ccd-ontology/ccd.owl",
+      "label": {
+        "IRI-based": "Document",
+        "es": "Documento"
+      },
+      "comment": {
+        "es": "Superclase para todos los recursos documentales CCD."
+      },
+      "pos": [
+        777.24,
+        560.12
+      ]
+    },
+    {
+      "id": "32",
+      "iri": "http://www.w3.org/2000/01/rdf-schema#Literal",
+      "baseIri": "http://www.w3.org/2000/01/rdf-schema",
+      "label": "Literal",
+      "attributes": [
+        "datatype"
+      ],
+      "pos": [
+        422.42,
+        -423.86
+      ]
+    },
+    {
+      "id": "35",
+      "iri": "http://www.w3.org/2000/01/rdf-schema#Literal",
+      "baseIri": "http://www.w3.org/2000/01/rdf-schema",
+      "label": "Literal",
+      "attributes": [
+        "datatype"
+      ],
+      "pos": [
+        482.4,
+        1091.04
+      ]
+    },
+    {
+      "id": "39",
+      "iri": "http://www.w3.org/2000/01/rdf-schema#Literal",
+      "baseIri": "http://www.w3.org/2000/01/rdf-schema",
+      "label": "Literal",
+      "attributes": [
+        "datatype"
+      ],
+      "pos": [
+        557.51,
+        1221.63
+      ]
+    },
+    {
+      "id": "40",
+      "iri": "http://www.w3.org/2000/01/rdf-schema#Literal",
+      "baseIri": "http://www.w3.org/2000/01/rdf-schema",
+      "label": "Literal",
+      "attributes": [
+        "datatype"
+      ],
+      "pos": [
+        708.76,
+        1279.04
+      ]
+    },
+    {
+      "id": "31",
+      "iri": "https://comisioncorograficadigital.github.io/ccd-ontology/ccd.owl#NewspaperArticle",
+      "baseIri": "https://comisioncorograficadigital.github.io/ccd-ontology/ccd.owl",
+      "label": {
+        "IRI-based": "NewspaperArticle",
+        "es": "Artículo de prensa"
+      },
+      "pos": [
+        661.68,
+        -367.57
+      ]
+    },
+    {
+      "id": "24",
+      "iri": "http://purl.org/ontology/bibo/Map",
+      "baseIri": "http://purl.org/ontology/bibo",
+      "label": {
+        "IRI-based": "Map",
+        "es": "Mapa"
+      },
+      "attributes": [
+        "external"
+      ],
+      "pos": [
+        746.7,
+        984.94
+      ]
+    },
+    {
+      "id": "43",
+      "iri": "http://www.w3.org/2000/01/rdf-schema#Literal",
+      "baseIri": "http://www.w3.org/2000/01/rdf-schema",
+      "label": "Literal",
+      "attributes": [
+        "datatype"
+      ],
+      "pos": [
+        55.93,
+        157.2
+      ]
+    },
+    {
+      "id": "47",
+      "iri": "http://www.w3.org/2000/01/rdf-schema#Literal",
+      "baseIri": "http://www.w3.org/2000/01/rdf-schema",
+      "label": "Literal",
+      "attributes": [
+        "datatype"
+      ],
+      "pos": [
+        1185.94,
+        -549.79
+      ]
+    },
+    {
+      "id": "26",
+      "iri": "https://schema.org/Person",
+      "baseIri": "https://schema.org",
+      "label": {
+        "IRI-based": "Person",
+        "es": "Persona"
+      },
+      "attributes": [
+        "external"
+      ],
+      "comment": {
+        "es": "Agente humano; rama paralela a Documento. No es subclase de ccd:Document."
+      },
+      "pos": [
+        1392.35,
+        1137.97
+      ]
+    },
+    {
+      "id": "50",
+      "iri": "http://www.w3.org/2000/01/rdf-schema#Literal",
+      "baseIri": "http://www.w3.org/2000/01/rdf-schema",
+      "label": "Literal",
+      "attributes": [
+        "datatype"
+      ],
+      "pos": [
+        71.09,
+        804.08
+      ]
+    },
+    {
+      "id": "46",
+      "iri": "https://comisioncorograficadigital.github.io/ccd-ontology/ccd.owl#JournalArticle",
+      "baseIri": "https://comisioncorograficadigital.github.io/ccd-ontology/ccd.owl",
+      "label": {
+        "IRI-based": "JournalArticle",
+        "es": "Artículo de revista"
+      },
+      "pos": [
+        1110.08,
+        -310.87
+      ]
+    },
+    {
+      "id": "20",
+      "iri": "http://purl.org/ontology/bibo/Article",
+      "baseIri": "http://purl.org/ontology/bibo",
+      "label": {
+        "IRI-based": "Article",
+        "es": "Artículo"
+      },
+      "attributes": [
+        "external"
+      ],
+      "pos": [
+        836.55,
+        4.85
+      ]
+    },
+    {
+      "id": "17",
+      "iri": "http://purl.org/ontology/bibo/Manuscript",
+      "baseIri": "http://purl.org/ontology/bibo",
+      "label": {
+        "IRI-based": "Manuscript",
+        "es": "Manuscrito"
+      },
+      "attributes": [
+        "external"
+      ],
+      "pos": [
+        562.59,
+        211.92
+      ]
+    },
+    {
+      "id": "54",
+      "iri": "http://www.w3.org/2000/01/rdf-schema#Literal",
+      "baseIri": "http://www.w3.org/2000/01/rdf-schema",
+      "label": "Literal",
+      "attributes": [
+        "datatype"
+      ],
+      "pos": [
+        -0.14,
+        328.34
+      ]
+    },
+    {
+      "id": "7",
+      "iri": "https://schema.org/Place",
+      "baseIri": "https://schema.org",
+      "label": {
+        "IRI-based": "Place",
+        "es": "Lugar"
+      },
+      "attributes": [
+        "external"
+      ],
+      "comment": {
+        "es": "Entidad geográfica/lugar; rama paralela a Documento."
+      },
+      "pos": [
+        1168.99,
+        594.29
+      ]
+    },
+    {
+      "id": "14",
+      "iri": "http://purl.org/ontology/bibo/Letter",
+      "baseIri": "http://purl.org/ontology/bibo",
+      "label": {
+        "IRI-based": "Letter",
+        "es": "Carta"
+      },
+      "attributes": [
+        "external"
+      ],
+      "pos": [
+        1097.39,
+        1063.32
+      ]
+    },
+    {
+      "id": "34",
+      "iri": "http://purl.org/ontology/bibo/Newspaper",
+      "baseIri": "http://purl.org/ontology/bibo",
+      "label": {
+        "IRI-based": "Newspaper"
+      },
+      "attributes": [
+        "external"
+      ],
+      "pos": [
+        422.94,
+        -643.32
+      ]
+    }
+  ],
+  "property": [
+    {
+      "id": "0",
+      "type": "rdfs:subClassOf"
+    },
+    {
+      "id": "3",
+      "type": "owl:ObjectProperty"
+    },
+    {
+      "id": "6",
+      "type": "owl:ObjectProperty"
+    },
+    {
+      "id": "9",
+      "type": "owl:ObjectProperty"
+    },
+    {
+      "id": "11",
+      "type": "owl:ObjectProperty"
+    },
+    {
+      "id": "13",
+      "type": "rdfs:subClassOf"
+    },
+    {
+      "id": "16",
+      "type": "rdfs:subClassOf"
+    },
+    {
+      "id": "18",
+      "type": "owl:ObjectProperty"
+    },
+    {
+      "id": "19",
+      "type": "rdfs:subClassOf"
+    },
+    {
+      "id": "21",
+      "type": "rdfs:subClassOf"
+    },
+    {
+      "id": "22",
+      "type": "rdfs:subClassOf"
+    },
+    {
+      "id": "23",
+      "type": "rdfs:subClassOf"
+    },
+    {
+      "id": "29",
+      "type": "owl:ObjectProperty"
+    },
+    {
+      "id": "30",
+      "type": "owl:someValuesFrom"
+    },
+    {
+      "id": "33",
+      "type": "owl:someValuesFrom"
+    },
+    {
+      "id": "36",
+      "type": "owl:someValuesFrom"
+    },
+    {
+      "id": "37",
+      "type": "owl:someValuesFrom"
+    },
+    {
+      "id": "38",
+      "type": "owl:someValuesFrom"
+    },
+    {
+      "id": "41",
+      "type": "owl:someValuesFrom"
+    },
+    {
+      "id": "42",
+      "type": "owl:someValuesFrom"
+    },
+    {
+      "id": "44",
+      "type": "owl:DatatypeProperty"
+    },
+    {
+      "id": "45",
+      "type": "owl:someValuesFrom"
+    },
+    {
+      "id": "48",
+      "type": "owl:someValuesFrom"
+    },
+    {
+      "id": "49",
+      "type": "owl:someValuesFrom"
+    },
+    {
+      "id": "51",
+      "type": "owl:someValuesFrom"
+    },
+    {
+      "id": "52",
+      "type": "owl:ObjectProperty"
+    },
+    {
+      "id": "53",
+      "type": "owl:someValuesFrom"
+    },
+    {
+      "id": "55",
+      "type": "owl:DatatypeProperty"
+    },
+    {
+      "id": "56",
+      "type": "owl:ObjectProperty"
+    },
+    {
+      "id": "57",
+      "type": "rdfs:subClassOf"
+    },
+    {
+      "id": "58",
+      "type": "owl:ObjectProperty"
+    },
+    {
+      "id": "59",
+      "type": "rdfs:subClassOf"
+    },
+    {
+      "id": "GENERATED-UNION-12-25-0",
+      "type": "setOperatorProperty"
+    },
+    {
+      "id": "GENERATED-UNION-12-26-1",
+      "type": "setOperatorProperty"
+    },
+    {
+      "id": "GENERATED-UNION-4-25-0",
+      "type": "setOperatorProperty"
+    },
+    {
+      "id": "GENERATED-UNION-4-26-1",
+      "type": "setOperatorProperty"
+    }
+  ],
+  "propertyAttribute": [
+    {
+      "id": "0",
+      "label": "Subclass of",
+      "attributes": [
+        "anonymous",
+        "object"
+      ],
+      "domain": "1",
+      "range": "2",
+      "pos": [
+        588.72,
+        475.95
+      ]
+    },
+    {
+      "id": "3",
+      "iri": "https://schema.org/creator",
+      "baseIri": "https://schema.org",
+      "label": {
+        "IRI-based": "creator",
+        "es": "Creador/a"
+      },
+      "attributes": [
+        "object",
+        "external"
+      ],
+      "domain": "2",
+      "range": "4",
+      "pos": [
+        881.82,
+        792.01
+      ]
+    },
+    {
+      "id": "6",
+      "iri": "http://purl.org/dc/terms/spatial",
+      "baseIri": "http://purl.org/dc/terms",
+      "label": {
+        "IRI-based": "spatial",
+        "es": "Lugar referido"
+      },
+      "attributes": [
+        "object",
+        "external"
+      ],
+      "domain": "2",
+      "range": "7",
+      "pos": [
+        973.12,
+        577.2
+      ]
+    },
+    {
+      "id": "9",
+      "iri": "http://purl.org/dc/terms/temporal",
+      "baseIri": "http://purl.org/dc/terms",
+      "label": {
+        "IRI-based": "temporal",
+        "es": "Cobertura temporal (SKOS)"
+      },
+      "attributes": [
+        "object",
+        "external"
+      ],
+      "domain": "2",
+      "range": "5",
+      "pos": [
+        839.14,
+        379.75
+      ]
+    },
+    {
+      "id": "11",
+      "iri": "https://schema.org/contributor",
+      "baseIri": "https://schema.org",
+      "label": {
+        "IRI-based": "contributor",
+        "es": "Colaborador/a"
+      },
+      "attributes": [
+        "object",
+        "external"
+      ],
+      "domain": "2",
+      "range": "12",
+      "pos": [
+        1053.04,
+        654.89
+      ]
+    },
+    {
+      "id": "13",
+      "label": "Subclass of",
+      "attributes": [
+        "anonymous",
+        "object"
+      ],
+      "domain": "14",
+      "range": "2",
+      "pos": [
+        937.31,
+        811.72
+      ]
+    },
+    {
+      "id": "16",
+      "label": "Subclass of",
+      "attributes": [
+        "anonymous",
+        "object"
+      ],
+      "domain": "17",
+      "range": "2",
+      "pos": [
+        669.91,
+        386.02
+      ]
+    },
+    {
+      "id": "18",
+      "iri": "http://purl.org/dc/terms/subject",
+      "baseIri": "http://purl.org/dc/terms",
+      "label": {
+        "IRI-based": "subject",
+        "es": "Tema (SKOS)"
+      },
+      "attributes": [
+        "object",
+        "external"
+      ],
+      "domain": "2",
+      "range": "5",
+      "pos": [
+        896.74,
+        397.85
+      ]
+    },
+    {
+      "id": "19",
+      "label": "Subclass of",
+      "attributes": [
+        "anonymous",
+        "object"
+      ],
+      "domain": "20",
+      "range": "2",
+      "pos": [
+        806.89,
+        282.49
+      ]
+    },
+    {
+      "id": "21",
+      "label": "Subclass of",
+      "attributes": [
+        "anonymous",
+        "object"
+      ],
+      "domain": "10",
+      "range": "2",
+      "pos": [
+        526.81,
+        447.68
+      ]
+    },
+    {
+      "id": "22",
+      "label": "Subclass of",
+      "attributes": [
+        "anonymous",
+        "object"
+      ],
+      "domain": "15",
+      "range": "2",
+      "pos": [
+        552.85,
+        639.73
+      ]
+    },
+    {
+      "id": "23",
+      "label": "Subclass of",
+      "attributes": [
+        "anonymous",
+        "object"
+      ],
+      "domain": "24",
+      "range": "2",
+      "pos": [
+        761.97,
+        772.53
+      ]
+    },
+    {
+      "id": "29",
+      "iri": "https://schema.org/publisher",
+      "baseIri": "https://schema.org",
+      "label": {
+        "IRI-based": "publisher",
+        "es": "Editorial/Institución editora"
+      },
+      "attributes": [
+        "object",
+        "external"
+      ],
+      "domain": "2",
+      "range": "25",
+      "pos": [
+        926.85,
+        646.84
+      ]
+    },
+    {
+      "id": "30",
+      "iri": "http://purl.org/dc/terms/issued",
+      "baseIri": "http://purl.org/dc/terms",
+      "label": {
+        "IRI-based": "issued",
+        "es": "Fecha de publicación"
+      },
+      "attributes": [
+        "datatype",
+        "someValues",
+        "external"
+      ],
+      "domain": "31",
+      "range": "32",
+      "pos": [
+        530.96,
+        -398.32
+      ]
+    },
+    {
+      "id": "33",
+      "iri": "http://purl.org/dc/terms/isPartOf",
+      "baseIri": "http://purl.org/dc/terms",
+      "label": {
+        "IRI-based": "isPartOf",
+        "es": "Es parte de"
+      },
+      "attributes": [
+        "object",
+        "someValues",
+        "external"
+      ],
+      "domain": "31",
+      "range": "34",
+      "pos": [
+        542.31,
+        -505.44
+      ]
+    },
+    {
+      "id": "36",
+      "iri": "http://www.w3.org/2003/01/geo/wgs84_pos#lat",
+      "baseIri": "http://www.w3.org/2003/01/geo/wgs84_pos",
+      "label": {
+        "IRI-based": "lat",
+        "es": "Latitud (WGS84)"
+      },
+      "attributes": [
+        "datatype",
+        "someValues",
+        "external"
+      ],
+      "domain": "24",
+      "range": "35",
+      "pos": [
+        603.8,
+        1042.31
+      ]
+    },
+    {
+      "id": "37",
+      "iri": "http://purl.org/dc/terms/isPartOf",
+      "baseIri": "http://purl.org/dc/terms",
+      "label": {
+        "IRI-based": "isPartOf",
+        "es": "Es parte de"
+      },
+      "attributes": [
+        "object",
+        "someValues",
+        "external"
+      ],
+      "domain": "1",
+      "range": "15",
+      "pos": [
+        364.33,
+        555.56
+      ]
+    },
+    {
+      "id": "38",
+      "iri": "http://purl.org/dc/terms/spatial",
+      "baseIri": "http://purl.org/dc/terms",
+      "label": {
+        "IRI-based": "spatial",
+        "es": "Lugar referido"
+      },
+      "attributes": [
+        "object",
+        "someValues",
+        "external"
+      ],
+      "domain": "24",
+      "range": "7",
+      "pos": [
+        957.84,
+        789.62
+      ]
+    },
+    {
+      "id": "41",
+      "iri": "http://www.w3.org/ns/locn#geometry",
+      "baseIri": "http://www.w3.org/ns/locn",
+      "label": {
+        "IRI-based": "geometry"
+      },
+      "attributes": [
+        "datatype",
+        "someValues",
+        "external"
+      ],
+      "domain": "24",
+      "range": "40",
+      "pos": [
+        725.17,
+        1151.79
+      ]
+    },
+    {
+      "id": "42",
+      "iri": "https://schema.org/artform",
+      "baseIri": "https://schema.org",
+      "label": {
+        "IRI-based": "artform"
+      },
+      "attributes": [
+        "datatype",
+        "someValues",
+        "external"
+      ],
+      "domain": "10",
+      "range": "43",
+      "pos": [
+        152.89,
+        235.51
+      ]
+    },
+    {
+      "id": "44",
+      "iri": "http://www.w3.org/2003/01/geo/wgs84_pos#long",
+      "baseIri": "http://www.w3.org/2003/01/geo/wgs84_pos",
+      "label": {
+        "IRI-based": "long",
+        "es": "Longitud (WGS84)"
+      },
+      "attributes": [
+        "datatype",
+        "external"
+      ],
+      "domain": "7",
+      "range": "27",
+      "pos": [
+        1322.59,
+        555.95
+      ]
+    },
+    {
+      "id": "45",
+      "iri": "http://purl.org/dc/terms/issued",
+      "baseIri": "http://purl.org/dc/terms",
+      "label": {
+        "IRI-based": "issued",
+        "es": "Fecha de publicación"
+      },
+      "attributes": [
+        "datatype",
+        "someValues",
+        "external"
+      ],
+      "domain": "46",
+      "range": "47",
+      "pos": [
+        1153.99,
+        -449.16
+      ]
+    },
+    {
+      "id": "48",
+      "iri": "http://purl.org/dc/terms/isPartOf",
+      "baseIri": "http://purl.org/dc/terms",
+      "label": {
+        "IRI-based": "isPartOf",
+        "es": "Es parte de"
+      },
+      "attributes": [
+        "object",
+        "someValues",
+        "external"
+      ],
+      "domain": "46",
+      "range": "8",
+      "pos": [
+        1289.9,
+        -329.9
+      ]
+    },
+    {
+      "id": "49",
+      "iri": "http://purl.org/ontology/bibo/isbn",
+      "baseIri": "http://purl.org/ontology/bibo",
+      "label": {
+        "IRI-based": "isbn"
+      },
+      "attributes": [
+        "datatype",
+        "someValues",
+        "external"
+      ],
+      "domain": "15",
+      "range": "50",
+      "pos": [
+        189.28,
+        765.17
+      ]
+    },
+    {
+      "id": "51",
+      "iri": "http://www.w3.org/2003/01/geo/wgs84_pos#long",
+      "baseIri": "http://www.w3.org/2003/01/geo/wgs84_pos",
+      "label": {
+        "IRI-based": "long",
+        "es": "Longitud (WGS84)"
+      },
+      "attributes": [
+        "datatype",
+        "someValues",
+        "external"
+      ],
+      "domain": "24",
+      "range": "39",
+      "pos": [
+        640.49,
+        1117.81
+      ]
+    },
+    {
+      "id": "52",
+      "iri": "https://schema.org/sender",
+      "baseIri": "https://schema.org",
+      "label": {
+        "IRI-based": "sender",
+        "es": "Remitente"
+      },
+      "attributes": [
+        "object",
+        "external"
+      ],
+      "domain": "14",
+      "range": "26",
+      "pos": [
+        1239.72,
+        1192.95
+      ]
+    },
+    {
+      "id": "53",
+      "iri": "https://schema.org/material",
+      "baseIri": "https://schema.org",
+      "label": {
+        "IRI-based": "material"
+      },
+      "attributes": [
+        "datatype",
+        "someValues",
+        "external"
+      ],
+      "domain": "10",
+      "range": "54",
+      "pos": [
+        126.38,
+        331.5
+      ]
+    },
+    {
+      "id": "55",
+      "iri": "http://www.w3.org/2003/01/geo/wgs84_pos#lat",
+      "baseIri": "http://www.w3.org/2003/01/geo/wgs84_pos",
+      "label": {
+        "IRI-based": "lat",
+        "es": "Latitud (WGS84)"
+      },
+      "attributes": [
+        "datatype",
+        "external"
+      ],
+      "domain": "7",
+      "range": "28",
+      "pos": [
+        1285.25,
+        472.68
+      ]
+    },
+    {
+      "id": "56",
+      "iri": "https://schema.org/recipient",
+      "baseIri": "https://schema.org",
+      "label": {
+        "IRI-based": "recipient",
+        "es": "Destinatario"
+      },
+      "attributes": [
+        "object",
+        "external"
+      ],
+      "domain": "14",
+      "range": "26",
+      "pos": [
+        1233.41,
+        1238.35
+      ]
+    },
+    {
+      "id": "57",
+      "label": "Subclass of",
+      "attributes": [
+        "anonymous",
+        "object"
+      ],
+      "domain": "31",
+      "range": "20",
+      "pos": [
+        749.12,
+        -181.36
+      ]
+    },
+    {
+      "id": "58",
+      "iri": "http://purl.org/dc/terms/type",
+      "baseIri": "http://purl.org/dc/terms",
+      "label": {
+        "IRI-based": "type",
+        "es": "Tipología (SKOS)"
+      },
+      "attributes": [
+        "object",
+        "external"
+      ],
+      "domain": "2",
+      "range": "5",
+      "pos": [
+        778.64,
+        361.97
+      ]
+    },
+    {
+      "id": "59",
+      "label": "Subclass of",
+      "attributes": [
+        "anonymous",
+        "object"
+      ],
+      "domain": "46",
+      "range": "20",
+      "pos": [
+        973.32,
+        -153.01
+      ]
+    },
+    {
+      "id": "GENERATED-UNION-12-25-0",
+      "domain": "12",
+      "range": "25",
+      "pos": [
+        1202.66,
+        741.62
+      ]
+    },
+    {
+      "id": "GENERATED-UNION-12-26-1",
+      "domain": "12",
+      "range": "26",
+      "pos": [
+        1360.6,
+        943.82
+      ]
+    },
+    {
+      "id": "GENERATED-UNION-4-25-0",
+      "domain": "4",
+      "range": "25",
+      "pos": [
+        1031.43,
+        878.73
+      ]
+    },
+    {
+      "id": "GENERATED-UNION-4-26-1",
+      "domain": "4",
+      "range": "26",
+      "pos": [
+        1189.37,
+        1080.93
+      ]
+    }
+  ]
+}

@@ -10,7 +10,7 @@
 @prefix locn:    <http://www.w3.org/ns/locn#> .
 @prefix wgs84:   <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 
-# Ontología ccd
+# Ontología 
 @prefix ccd:     <https://comisioncorograficadigital.github.io/ccd-ontology/ccd.owl#> .
 @prefix cctop:   <https://comisioncorograficadigital.github.io/ccd-ontology/ontology/topico/> .
 @prefix ccdsh:   <https://comisioncorograficadigital.github.io/ccd-ontology/ontology/shapes#> .
@@ -19,68 +19,86 @@
 # SHAPES DE APOYO
 #################################################################
 
+# Valor debe ser IRI y skos:Concept
 ccdsh:ConceptValue a sh:NodeShape ;
   sh:nodeKind sh:IRI ;
   sh:property [ sh:path rdf:type ; sh:hasValue skos:Concept ] .
 
+# Concepto de Tipología (en el esquema cctop:Tipologia)
 ccdsh:TipologiaConcept a sh:NodeShape ;
   sh:nodeKind sh:IRI ;
   sh:property [ sh:path rdf:type ;      sh:hasValue skos:Concept ] ;
   sh:property [ sh:path skos:inScheme ; sh:hasValue cctop:Tipologia ] .
 
+# Concepto de Tema (cctop:Tema)
 ccdsh:TemaConcept a sh:NodeShape ;
   sh:nodeKind sh:IRI ;
   sh:property [ sh:path rdf:type ;      sh:hasValue skos:Concept ] ;
   sh:property [ sh:path skos:inScheme ; sh:hasValue cctop:Tema ] .
 
+# Concepto de Técnica (cctop:Tecnica)
 ccdsh:TecnicaConcept a sh:NodeShape ;
   sh:nodeKind sh:IRI ;
   sh:property [ sh:path rdf:type ;      sh:hasValue skos:Concept ] ;
   sh:property [ sh:path skos:inScheme ; sh:hasValue cctop:Tecnica ] .
 
+# Concepto de Material (cctop:Material)
 ccdsh:MaterialConcept a sh:NodeShape ;
   sh:nodeKind sh:IRI ;
   sh:property [ sh:path rdf:type ;      sh:hasValue skos:Concept ] ;
   sh:property [ sh:path skos:inScheme ; sh:hasValue cctop:Material ] .
 
+# Concepto de Cobertura temporal (cctop:CoberturaTemporal)
 ccdsh:CoberturaTemporalConcept a sh:NodeShape ;
   sh:nodeKind sh:IRI ;
   sh:property [ sh:path rdf:type ;      sh:hasValue skos:Concept ] ;
   sh:property [ sh:path skos:inScheme ; sh:hasValue cctop:CoberturaTemporal ] .
 
 #################################################################
-# NÚCLEO: Documento (todas las tipologías)
+# NÚCLEO: Documento (aplica a TODAS las tipologías)
 #################################################################
 
 ccdsh:DocumentoShape a sh:NodeShape ;
   sh:targetClass ccd:Documento ;
 
+  # Título: literal, 1..1
   sh:property [
     sh:path dcterms:title ;
     sh:minCount 1 ; sh:maxCount 1 ;
     sh:datatype xsd:string
   ] ;
 
+  # Identificador: ≥ 1 (sin patrón obligatorio por ahora)
   sh:property [
     sh:path dcterms:identifier ;
     sh:minCount 1
   ] ;
 
+  # Tipo (Tipología): ≥ 1, IRI a Concept de cctop:Tipologia
   sh:property [
     sh:path dcterms:type ;
     sh:minCount 1 ;
     sh:node ccdsh:TipologiaConcept
   ] ;
 
-  sh:property [ sh:path dcterms:subject  ; sh:node ccdsh:TemaConcept ] ;
-  sh:property [ sh:path schema:artform   ; sh:node ccdsh:TecnicaConcept ] ;
-  sh:property [ sh:path schema:material  ; sh:node ccdsh:MaterialConcept ] ;
-  sh:property [ sh:path dcterms:temporal ; sh:node ccdsh:CoberturaTemporalConcept ] ;
+  # Tema(s): opcional → si hay, IRI a Concept de cctop:Tema
+  sh:property [ sh:path dcterms:subject   ; sh:node ccdsh:TemaConcept ] ;
 
+  # Técnica(s): opcional → si hay, IRI a Concept de cctop:Tecnica
+  sh:property [ sh:path schema:artform    ; sh:node ccdsh:TecnicaConcept ] ;
+
+  # Material(es): opcional → si hay, IRI a Concept de cctop:Material
+  sh:property [ sh:path schema:material   ; sh:node ccdsh:MaterialConcept ] ;
+
+  # Cobertura temporal: opcional → si hay, IRI a Concept de cctop:CoberturaTemporal
+  sh:property [ sh:path dcterms:temporal  ; sh:node ccdsh:CoberturaTemporalConcept ] ;
+
+  # Fechas comunes (control suave)
   sh:property [ sh:path dcterms:issued  ; sh:or ( [ sh:datatype xsd:date ] [ sh:datatype xsd:dateTime ] ) ] ;
   sh:property [ sh:path dcterms:created ; sh:or ( [ sh:datatype xsd:date ] [ sh:datatype xsd:dateTime ] ) ] ;
   sh:property [ sh:path dcterms:date    ; sh:or ( [ sh:datatype xsd:date ] [ sh:datatype xsd:dateTime ] ) ] ;
 
+  # Relaciones genéricas (si están, que sean IRIs)
   sh:property [ sh:path dcterms:isPartOf     ; sh:nodeKind sh:IRI ] ;
   sh:property [ sh:path dcterms:hasPart      ; sh:nodeKind sh:IRI ] ;
   sh:property [ sh:path dcterms:isVersionOf  ; sh:nodeKind sh:IRI ] ;
@@ -88,26 +106,31 @@ ccdsh:DocumentoShape a sh:NodeShape ;
   sh:property [ sh:path prov:wasDerivedFrom  ; sh:nodeKind sh:IRI ] ;
   sh:property [ sh:path prov:wasRevisionOf   ; sh:nodeKind sh:IRI ] ;
 
+  # Espacial / ubicación (si está, IRI)
   sh:property [ sh:path dcterms:spatial ; sh:nodeKind sh:IRI ] ;
   sh:property [ sh:path schema:location ; sh:nodeKind sh:IRI ] .
 
 #################################################################
-# SUBCLASES
+# SUBCLASES (heredan el núcleo con sh:node)
 #################################################################
 
+# Sección de libro → debe estar dentro de un Libro
 ccdsh:SeccionDeLibroShape a sh:NodeShape ;
   sh:targetClass bibo:Chapter ;
+  sh:node ccdsh:DocumentoShape ;
   sh:property [
     sh:path dcterms:isPartOf ;
     sh:minCount 1 ;
     sh:nodeKind sh:IRI
-    # opcional si quieres estricto: sh:class bibo:Book
+    # (Opcional, más estricto) sh:class bibo:Book
   ] ;
   sh:property [ sh:path bibo:pageStart ] ;
   sh:property [ sh:path bibo:pageEnd ] .
 
+# Artículo (revista/periódico) → issued recomendado; páginas opcionales
 ccdsh:ArticuloShape a sh:NodeShape ;
   sh:targetClass bibo:Article ;
+  sh:node ccdsh:DocumentoShape ;
   sh:property [ sh:path dcterms:isPartOf ; sh:nodeKind sh:IRI ] ;
   sh:property [ sh:path dcterms:issued ; sh:or ( [ sh:datatype xsd:date ] [ sh:datatype xsd:dateTime ] ) ] ;
   sh:property [ sh:path bibo:volume ] ;
@@ -115,20 +138,27 @@ ccdsh:ArticuloShape a sh:NodeShape ;
   sh:property [ sh:path bibo:pageStart ] ;
   sh:property [ sh:path bibo:pageEnd ] .
 
+# Carta → emisor/destinatario opcionales (si están, IRIs)
 ccdsh:CartaShape a sh:NodeShape ;
   sh:targetClass bibo:Letter ;
+  sh:node ccdsh:DocumentoShape ;
   sh:property [ sh:path schema:sender    ; sh:nodeKind sh:IRI ] ;
   sh:property [ sh:path schema:recipient ; sh:nodeKind sh:IRI ] .
 
+# Mapa → ≥ 1 espacial; modified opcional (cartografía)
 ccdsh:MapaShape a sh:NodeShape ;
   sh:targetClass bibo:Map ;
+  sh:node ccdsh:DocumentoShape ;
   sh:property [ sh:path dcterms:spatial  ; sh:minCount 1 ; sh:nodeKind sh:IRI ] ;
   sh:property [ sh:path dcterms:modified ; sh:datatype xsd:date ] ;
   sh:property [ sh:path locn:geometry ] ;
   sh:property [ sh:path wgs84:lat ] ;
   sh:property [ sh:path wgs84:long ] .
 
+# Imagen / Lámina → técnica/material opcionales pero tipados
 ccdsh:ImagenShape a sh:NodeShape ;
   sh:targetClass <http://purl.org/dc/dcmitype/Image> ;
+  sh:node ccdsh:DocumentoShape ;
   sh:property [ sh:path schema:artform  ; sh:node ccdsh:TecnicaConcept ] ;
   sh:property [ sh:path schema:material ; sh:node ccdsh:MaterialConcept ] .
+

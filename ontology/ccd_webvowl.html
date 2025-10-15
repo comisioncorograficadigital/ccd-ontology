@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>CCD — WebVOWL</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/VisualDataWeb/WebVOWL@1.1.7/build/webvowl.css">
+  <style>html,body{height:100%;margin:0} #app{height:100vh}</style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <!-- D3 primero, luego WebVOWL -->
+  <script src="https://cdn.jsdelivr.net/gh/VisualDataWeb/WebVOWL@1.1.7/build/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/VisualDataWeb/WebVOWL@1.1.7/build/webvowl.js"></script>
+  <script>
+    // Permite ?file=... (por ej. ?file=/ccd-ontology/ccd_webvowl.json)
+    const file = new URLSearchParams(location.search).get("file") || "ccd_webvowl.json";
+    const graph = webvowl.graph(), opts = webvowl.options(), lang = webvowl.languageTools();
+    const rend = webvowl.renderer().graph(graph).svgContainer(d3.select("#app"));
+    fetch(file, {cache: "no-store"})
+      .then(r => r.json())
+      .then(data => { graph.options(opts).languageTools(lang).data(data); rend.update(); })
+      .catch(e => document.body.insertAdjacentHTML("beforeend",
+        `<p style="padding:1rem;font:14px system-ui">No pude cargar <code>${file}</code>: ${e.message}</p>`));
+  </script>
+</body>
+</html>

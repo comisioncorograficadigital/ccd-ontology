@@ -3,25 +3,47 @@
 <head>
   <meta charset="utf-8" />
   <title>CCD — WebVOWL</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/VisualDataWeb/WebVOWL@1.1.7/build/webvowl.css">
-  <style>html,body{height:100%;margin:0} #app{height:100vh}</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/VisualDataWeb/WebVOWL@1.1.7/build/webvowl.css">
+  <style>
+    html,body{height:100%;margin:0}
+    #app{height:100vh}
+    .msg{font:14px system-ui,Segoe UI,Roboto,Arial;padding:1rem}
+    code{background:#f6f8fa;padding:.15em .35em;border-radius:4px}
+  </style>
 </head>
 <body>
   <div id="app"></div>
+  <div id="log" class="msg"></div>
 
-  <!-- D3 primero, luego WebVOWL -->
+  <!-- 1) D3 primero -->
   <script src="https://cdn.jsdelivr.net/gh/VisualDataWeb/WebVOWL@1.1.7/build/d3.min.js"></script>
+  <!-- 2) Luego WebVOWL (expone window.webvowl) -->
   <script src="https://cdn.jsdelivr.net/gh/VisualDataWeb/WebVOWL@1.1.7/build/webvowl.js"></script>
+
+  <!-- 3) Tu código: va DESPUÉS de cargar los scripts -->
   <script>
-    // Permite ?file=... (por ej. ?file=/ccd-ontology/ccd_webvowl.json)
-    const file = new URLSearchParams(location.search).get("file") || "ccd_webvowl.json";
-    const graph = webvowl.graph(), opts = webvowl.options(), lang = webvowl.languageTools();
-    const rend = webvowl.renderer().graph(graph).svgContainer(d3.select("#app"));
-    fetch(file, {cache: "no-store"})
-      .then(r => r.json())
-      .then(data => { graph.options(opts).languageTools(lang).data(data); rend.update(); })
-      .catch(e => document.body.insertAdjacentHTML("beforeend",
-        `<p style="padding:1rem;font:14px system-ui">No pude cargar <code>${file}</code>: ${e.message}</p>`));
+    const log = m => document.getElementById('log').innerHTML += m + '<br>';
+    const qp   = new URLSearchParams(location.search);
+    const file = qp.get("file") || "ccd_webvowl.json";   // por defecto, en la misma carpeta
+
+    if (!("webvowl" in window)) {
+      log("❌ <b>webvowl</b> no está definido. Revisa que los <code>&lt;script&gt;</code> de D3 y WebVOWL carguen (orden correcto).");
+    } else {
+      const graph = webvowl.graph();
+      const opts  = webvowl.options();
+      const lang  = webvowl.languageTools();
+      const rend  = webvowl.renderer().graph(graph).svgContainer(d3.select("#app"));
+
+      fetch(file, { cache: "no-store" })
+        .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+        .then(data => { log("✅ JSON cargado: <code>" + file + "</code>. Renderizando…");
+                        graph.options(opts).languageTools(lang).data(data);
+                        rend.update(); })
+        .catch(err => { log("❌ No pude cargar <code>" + file + "</code>: " + err.message);
+                        log("Verifica nombre/ruta y que sea un <b>export JSON de WebVOWL</b>."); });
+    }
   </script>
 </body>
 </html>

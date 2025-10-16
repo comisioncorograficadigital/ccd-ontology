@@ -4,46 +4,30 @@
   <meta charset="utf-8" />
   <title>CCD — WebVOWL</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- WebVOWL CSS desde unpkg (MIME correcto) -->
-  <link rel="stylesheet" href="https://unpkg.com/webvowl@1.1.7/build/webvowl.css">
+  <link rel="stylesheet" href="vendors/webvowl.css">
   <style>
     html,body{height:100%;margin:0}
     #app{height:100vh}
-    .msg{font:14px system-ui,Segoe UI,Roboto,Arial;padding:1rem}
-    code{background:#f6f8fa;padding:.15em .35em;border-radius:4px}
   </style>
 </head>
 <body>
   <div id="app"></div>
-  <div id="log" class="msg"></div>
 
-  <!-- 1) D3 v3 (requerido por WebVOWL) -->
-  <script src="https://d3js.org/d3.v3.min.js"></script>
-  <!-- 2) WebVOWL JS desde unpkg -->
-  <script src="https://unpkg.com/webvowl@1.1.7/build/webvowl.js"></script>
+  <!-- 1) D3 v3 (local) -->
+  <script src="vendors/d3.v3.min.js"></script>
+  <!-- 2) WebVOWL (local) -->
+  <script src="vendors/webvowl.js"></script>
 
-  <!-- 3) Tu inicialización -->
+  <!-- 3) Inicialización -->
   <script>
-    const log = m => document.getElementById('log').innerHTML += m + '<br>';
-    const qp   = new URLSearchParams(location.search);
-    const file = qp.get("file") || "ccd_webvowl.json";   // por defecto, junto a este HTML
-
-    if (!("webvowl" in window)) {
-      log("❌ <b>webvowl</b> no está definido. Revisa que carguen D3 y WebVOWL (orden correcto).");
-    } else {
-      const graph = webvowl.graph();
-      const opts  = webvowl.options();
-      const lang  = webvowl.languageTools();
-      const rend  = webvowl.renderer().graph(graph).svgContainer(d3.select("#app"));
-
-      fetch(file, { cache: "no-store" })
-        .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
-        .then(data => { log("✅ JSON cargado: <code>"+file+"</code>. Renderizando…");
-                        graph.options(opts).languageTools(lang).data(data);
-                        rend.update(); })
-        .catch(err => { log("❌ No pude cargar <code>"+file+"</code>: " + err.message +
-                           "<br>Verifica nombre/ruta y que sea un <b>export JSON de WebVOWL</b>."); });
-    }
+    const file = new URLSearchParams(location.search).get("file") || "ccd_webvowl.json";
+    const g = webvowl.graph(), o = webvowl.options(), L = webvowl.languageTools();
+    const r = webvowl.renderer().graph(g).svgContainer(d3.select("#app"));
+    fetch(file, { cache: "no-store" })
+      .then(rsp => { if(!rsp.ok) throw new Error("HTTP "+rsp.status); return rsp.json(); })
+      .then(data => { g.options(o).languageTools(L).data(data); r.update(); })
+      .catch(e => { document.body.insertAdjacentHTML("beforeend",
+        `<p style="font:14px system-ui;padding:1rem">No pude cargar <code>${file}</code>: ${e.message}</p>`); });
   </script>
 </body>
 </html>

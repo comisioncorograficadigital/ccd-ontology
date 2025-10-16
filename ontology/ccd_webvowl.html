@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <title>CCD — WebVOWL</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/VisualDataWeb/WebVOWL@1.1.7/build/webvowl.css">
+  <!-- WebVOWL CSS desde unpkg (MIME correcto) -->
+  <link rel="stylesheet" href="https://unpkg.com/webvowl@1.1.7/build/webvowl.css">
   <style>
     html,body{height:100%;margin:0}
     #app{height:100vh}
@@ -17,19 +17,19 @@
   <div id="app"></div>
   <div id="log" class="msg"></div>
 
+  <!-- 1) D3 v3 (requerido por WebVOWL) -->
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <!-- 2) WebVOWL JS desde unpkg -->
+  <script src="https://unpkg.com/webvowl@1.1.7/build/webvowl.js"></script>
 
-<script src="https://cdn.jsdelivr.net/gh/VisualDataWeb/WebVOWL@1.1.6/build/d3.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/VisualDataWeb/WebVOWL@1.1.6/build/webvowl.js"></script>
-
-
-  <!-- 3) Tu código: va DESPUÉS de cargar los scripts -->
+  <!-- 3) Tu inicialización -->
   <script>
     const log = m => document.getElementById('log').innerHTML += m + '<br>';
     const qp   = new URLSearchParams(location.search);
-    const file = qp.get("file") || "ccd_webvowl.json";   // por defecto, en la misma carpeta
+    const file = qp.get("file") || "ccd_webvowl.json";   // por defecto, junto a este HTML
 
     if (!("webvowl" in window)) {
-      log("❌ <b>webvowl</b> no está definido. Revisa que los <code>&lt;script&gt;</code> de D3 y WebVOWL carguen (orden correcto).");
+      log("❌ <b>webvowl</b> no está definido. Revisa que carguen D3 y WebVOWL (orden correcto).");
     } else {
       const graph = webvowl.graph();
       const opts  = webvowl.options();
@@ -38,12 +38,13 @@
 
       fetch(file, { cache: "no-store" })
         .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
-        .then(data => { log("✅ JSON cargado: <code>" + file + "</code>. Renderizando…");
+        .then(data => { log("✅ JSON cargado: <code>"+file+"</code>. Renderizando…");
                         graph.options(opts).languageTools(lang).data(data);
                         rend.update(); })
-        .catch(err => { log("❌ No pude cargar <code>" + file + "</code>: " + err.message);
-                        log("Verifica nombre/ruta y que sea un <b>export JSON de WebVOWL</b>."); });
+        .catch(err => { log("❌ No pude cargar <code>"+file+"</code>: " + err.message +
+                           "<br>Verifica nombre/ruta y que sea un <b>export JSON de WebVOWL</b>."); });
     }
   </script>
 </body>
 </html>
+
